@@ -1,14 +1,24 @@
 <header class="mb-4">
   <nav class="navbar navbar-expand-sm navbar-#f0f8ff bg-#f0f8ff">
-    <a class="navbar-brand" href="/">Zaiko</a>
+    
+    <% if logged_in? %>
+      <a class="navbar-brand" href=zaiko>Zaiko</a>
+    <% else %>
+      <a class="navbar-brand" href="/">Zaiko</a>
+    <% end %>
+    
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
-        <li class="nav-item"><a href=login class="nav-link">ログイン</a></li>
-        <li class="nav-item"><a href=signup class="nav-link">新規登録</a></li>
+        <% if logged_in? %>
+          <li class="nav-item"><%= link_to("ログアウト", logout_path, method: :delete) %></li>
+        <% else %>
+          <li class="nav-item"><a href=login class="nav-link">ログイン</a></li>
+          <li class="nav-item"><a href=signup class="nav-link">新規登録</a></li>
+        <% end %>
       </ul>
     </div>
   </nav>
