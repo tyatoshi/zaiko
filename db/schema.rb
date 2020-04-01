@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_24_092959) do
+ActiveRecord::Schema.define(version: 2020_03_25_071458) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -20,4 +20,15 @@ ActiveRecord::Schema.define(version: 2020_03_24_092959) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "zaikos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "content"
+    t.integer "number"
+    t.string "image_name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_zaikos_on_user_id"
+  end
+
+  add_foreign_key "zaikos", "users"
 end

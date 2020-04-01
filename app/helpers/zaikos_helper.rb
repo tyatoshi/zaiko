@@ -1,0 +1,2 @@
+module ZaikosHelper
+end

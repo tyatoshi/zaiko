@@ -1,0 +1,27 @@
+<%= render 'zaikos/nav-item' %>
+
+<% @zaikos.each do |zaiko| %>
+  <table class="table table-striped table-bordered">
+    <tr class="text-center">
+    <% if zaiko.id || nil %>
+      <% if zaiko.image_name? %>
+        <td class="text-center align-middle"><%= image_tag zaiko.image_name.url ,:size =>'10×10' %></td>
+      <% else %>
+        <td class="text-center align-middle"><%= image_tag("default.jpg") %></td>
+    <% end %>
+    <td class="text-center align-middle"><%= zaiko.content %></td>
+    <td id="number_<%= zaiko.id %>" class="text-center align-middle"><%= zaiko.number %></td>
+    <td class="text-center align-middle my-gray"><%= link_to zaiko_path(id: zaiko.id, num: 1), method: :put, remote: true do%>
+        <i class="far fa-plus-square fa-4x"></i>
+      <% end %></td>
+      <td class="text-center align-middle minus_icon""><%= link_to zaiko_path(id: zaiko.id, num: -1), method: :put, remote: true do%>
+       <i class="far fa-minus-square fa-4x"></i>
+      <% end %></td>
+      <td class="text-center align-middle delete_icon"><%= link_to zaiko, method: :delete, data: { confirm: "削除してもよろしいですか？" } do%>
+       <i class="far fa-trash-alt fa-4x"></i>
+      <% end %></td>
+      <% end %>
+    </tr>
+  </table>
+<% end %>
+
