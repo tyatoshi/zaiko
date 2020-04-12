@@ -1,16 +1,17 @@
 class ZaikosController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show]
+  before_action :require_user_logged_in
+  before_action :zaiko_first, only: [:index, :graph, :order, :add]
   
   def index
-    @zaiko = current_user.zaikos.build
-    @zaikos = current_user.zaikos
-    @user = current_user
+
   end
   
   def create
     @zaiko = current_user.zaikos.build(zaiko_params)
     if @zaiko.save
       flash[:success] = '追加しました。'
+      graph = @zaiko.trends.build(article:zaiko_params[:number], user_id:current_user.id, zaiko_id:@zaiko.id)
+      graph.save
       redirect_to zaikos_path
     else
       flash.now[:danger] = '追加に失敗しました。'
@@ -27,27 +28,37 @@ class ZaikosController < ApplicationController
   
   def update
     @zaiko = Zaiko.find(params[:id])
-    num = params[:num]
-    @number = @zaiko.number + num.to_i
+    
+    num = params[:num].to_i
+    @number = @zaiko.number + num
+    
     if @number >= 0
       @zaiko.number = @number
       @zaiko.save
+      if num == 1
+        graph = @zaiko.trends.build(article:@number, increase:num, user_id:current_user.id)
+        graph.save
+      else
+        graph = @zaiko.trends.build(article:@number, decrease:num,user_id:current_user.id)
+        graph.save
+      end
     else
       flash[:danger] = '更新できませんでした。在庫がマイナスとなります。'
     end
+    
   end
   
   def graph
-    @user = current_user
+    @zaikos = current_user.zaikos
+    @graph = Trend.all
   end
   
   def order
-    @user = current_user
+
   end
   
   def add
-    @zaiko = current_user.zaikos.build
-    @user = current_user
+
   end
   
   private
@@ -55,4 +66,12 @@ class ZaikosController < ApplicationController
   def zaiko_params
     params.require(:zaiko).permit(:content, :number, :image_name)
   end
+  
+  def zaiko_first
+    @zaiko = current_user.zaikos.build
+    @zaikos = current_user.zaikos
+    @user = current_user
+    @have = current_user.zaikos.first
+  end
+  
 end

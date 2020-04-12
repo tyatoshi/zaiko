@@ -4,6 +4,7 @@ class Zaiko < ApplicationRecord
   validates :number, presence: true
   
   belongs_to :user
+  has_many :trends, dependent: :destroy
   
   mount_uploader :image_name, ImageUploader
 end

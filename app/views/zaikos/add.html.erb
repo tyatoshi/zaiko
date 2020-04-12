@@ -1,14 +1,15 @@
 <%= render 'zaikos/nav-item' %>
-
+<%#　<%= render 'zaikos/nav-item-add' %>
 <%= form_with(model: @zaiko, local: true) do |f| %>
-  <div class="form-group">
-    <%= f.text_area :content, class: 'form-control', rows: 1 %>
+  <div class="form-group ">
+    <%= f.text_area :content, class: 'form-control mt-3', rows: 1, placeholder: '商品名を入力してください' %>
   </div>
   <div class="form-group">
-    <%= f.text_area :number, class: 'form-control', rows: 1 %>
+    <%= f.text_area :number, class: 'form-control mt-3', rows: 1, placeholder: '現在の個数を入力してください' %>
   </div>
   <div class="form-group">
-    <%= f.file_field :image_name, class: 'form-control'%>
+    <div>画像を設定したい場合に設定してください。（設定しなくとも問題ありません）</div>
+    <div><%= f.file_field :image_name%></div>
   </div>
     <%= f.submit '新規作成', class: 'btn btn-primary btn-block' %>
 <% end %>

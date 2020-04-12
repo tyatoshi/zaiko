@@ -1,1 +1,105 @@
 <%= render 'zaikos/nav-item' %>
+<% require "date" %>
+<% d = Date.today %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="https://unpkg.com/chartjs-plugin-colorschemes"></script>
+
+
+<% @zaikos.each do |zaiko| %>
+  <h4 class="text-center mt-1 mb-1"><%= zaiko.content %></h4>
+  <canvas id="<%= zaiko.content%>"></canvas>
+
+  <script>
+        var ctx = document.getElementById("<%= zaiko.content%>");
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                  labels: [<% (0..29).each do |day| %>
+                            <% month = p(d - 29 + day).month %>
+                            <% day = p(d - 29 + day).day %>
+                            <%= month.to_s + "." + day.to_s %>,
+                            <% end %>
+                          ],
+                datasets: [{
+                    type: 'bar',
+                    label: '増加数',
+                    data: [ <% (0..29).each do |day| %>
+                              <%= @graph.where(zaiko_id:zaiko.id)
+                                        .where(created_at: p(d - 29 + day).in_time_zone.all_day)
+                                        .sum(:increase) 
+                              %>,
+                            <% end %>
+                          ],
+                    backgroundColor: 'rgb(100, 149, 237)',
+                },
+                {
+                    type: 'bar',
+                    label: '払出数',
+                    data: [<% (0..29).each do |day| %>
+                              <%= @graph.where(zaiko_id:zaiko.id)
+                                        .where(created_at: p(d - 29 + day).in_time_zone.all_day)
+                                        .sum(:decrease) 
+                              %>,
+                            <% end %>
+                            ],
+                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                },
+                {
+                    type: 'line',
+                    spanGaps: true,
+                    label: "在庫数",
+                    backgroundColor: 'rgb(0, 255, 137)',
+                    borderColor: 'rgb(0, 255, 137)',
+                    // 線の幅(ピクセル単位)
+                    borderWidth: 2,
+                    // 線のベジェ曲線の張力。直線を描くには0に設定する。
+                    lineTension: 0.5,
+                    // 点の形状の半径。0に設定すると、点はレンダリングされない。
+                    pointRadius: 3,
+                    // マウスオーバー検出のために点半径に追加される半径(ピクセル単位)
+                    pointHitRadius: 3,
+                    // 線の下を埋めるかどうか
+                    fill: false,
+                    data: [<% (0..29).each do |day| %>
+                            <% art = @graph.where(zaiko_id:zaiko.id)
+                                            .where(created_at: p(d - 29 + day).in_time_zone.all_day)
+                                            .last(1)%>
+                            <% if art == [] %>
+                              <%= nil %>,
+                            <% else %>
+                              <%= @graph.where(zaiko_id:zaiko.id)
+                                        .where(created_at: p(d - 29 + day).in_time_zone.all_day)
+                                        .last
+                                        .article%>,
+                              <% end %>
+                          <% end %>
+                          ],
+                }]
+            },
+            
+            options: {
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      suggestedMin: 0,
+                      stepSize: 1,
+                    }
+                  }]
+                },
+                plugins: {
+                  colorschemes: {
+                    scheme: 'brewer.Paired12'
+                  }
+                }
+        
+            }
+            
+        });
+    </script>
+<% end %>
+
+
+  
+  

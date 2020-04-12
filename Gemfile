@@ -59,3 +59,7 @@ gem 'kaminari'
 gem 'carrierwave'
 
 gem 'jquery-rails'
+
+gem 'mini_magick'
+
+gem 'jquery-turbolinks'

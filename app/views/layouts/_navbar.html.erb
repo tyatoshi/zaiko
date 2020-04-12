@@ -2,9 +2,9 @@
   <nav class="navbar navbar-expand-sm navbar-#f0f8ff bg-#f0f8ff">
     
     <% if logged_in? %>
-      <a class="navbar-brand" href=<% zaikos_path %>>Zaiko</a>
+      <a class="navbar-brand" href=<% zaikos_path %>>Ｚａｉｋｏ</a>
     <% else %>
-      <a class="navbar-brand" href="/">Zaiko</a>
+      <a class="navbar-brand" href="/">Ｚａｉｋｏ</a>
     <% end %>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
@@ -16,8 +16,8 @@
         <% if logged_in? %>
           <li class="nav-item"><%= link_to("ログアウト", logout_path, method: :delete) %></li>
         <% else %>
-          <li class="nav-item"><a href=login class="nav-link">ログイン</a></li>
-          <li class="nav-item"><a href=signup class="nav-link">新規登録</a></li>
+          <li class="nav-item "><a href=login class="nav-link btn btn-default mr-3">ログイン</a></li>
+          <li class="nav-item"><a href=signup class="nav-link btn btn-info">新規登録</a></li>
         <% end %>
       </ul>
     </div>

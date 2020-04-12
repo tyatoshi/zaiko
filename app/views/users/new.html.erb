@@ -1,5 +1,5 @@
-<div class="text-center">
-  <h1>Sign up</h1>
+<div class="text-center mb-5">
+  <h1>アカウントを作成</h1>
 </div>
 
 <div class="row">
@@ -8,27 +8,23 @@
     <%= form_with(model: @user, local: true) do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
       
-      <div class="form-group">
-        <%= f.label :name, 'Name' %>
-        <%= f.text_field :name, class: 'form-control' %>
+      <div class="form-group mt-3 mb-4">
+        <%= f.text_field :name, class: 'form-control', placeholder: "ユーザー名" %>
       </div>
 
-      <div class="form-group">
-        <%= f.label :email, 'Email' %>
-        <%= f.email_field :email, class: 'form-control' %>
+      <div class="form-group mb-4">
+        <%= f.email_field :email, class: 'form-control', placeholder: 'メールアドレス' %>
       </div>
 
-      <div class="form-group">
-        <%= f.label :password, 'Password' %>
-        <%= f.password_field :password, class: 'form-control' %>
+      <div class="form-group mb-4">
+        <%= f.password_field :password, class: 'form-control', placeholder: 'パスワード' %>
       </div>
 
-      <div class="form-group">
-        <%= f.label :password_confirmation, 'Confirmation' %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <div class="form-group mb-5">
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'パスワード' %>
       </div>
 
-      <%= f.submit 'Sign up', class: 'btn btn-primary btn-block' %>
+      <%= f.submit '新規登録', class: 'btn btn-primary btn-block' %>
     <% end %>
   </div>
 </div>

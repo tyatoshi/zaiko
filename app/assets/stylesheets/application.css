@@ -13,3 +13,43 @@
  *= require_tree .
  *= require_self
  */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+
+*{
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.gif{
+  width:100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.login-modal-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  /* display: none;を追加してください */
+  display: none;
+}
+
+td img{
+  width: 100%;
+}
+
+.icon_size{
+  font-size: 1em;
+}
+
+.no_padding{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.table td{
+  padding:0px;
+}
