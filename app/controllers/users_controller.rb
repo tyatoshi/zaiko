@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      NotificationMailer.send_message(@user).deliver
+      #NotificationMailer.send_message(@user).deliver
       flash[:success] = 'ユーザを登録しました。メールも確認ください。'
       redirect_to login_path
     else
