@@ -48,7 +48,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
+  #<<: *default
+  encoding: unicode
+  pool: 5
   database: zaiko-app_production
   username: zaiko-app
   password: <%= ENV['ZAIKO-APP_DATABASE_PASSWORD'] %>
