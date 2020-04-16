@@ -96,7 +96,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
-  :user_name => "zaikoapp@gmail.com",,
+  :user_name => "zaikoapp@gmail.com",
   :password => "vjsnxclxoscmlpjn",
   :domain => 'herokuapp.com',
   :address => 'smtp.sendgrid.net',
