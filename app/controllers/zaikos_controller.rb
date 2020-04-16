@@ -1,5 +1,5 @@
 class ZaikosController < ApplicationController
-  before_action :require_user_logged_in
+  before_action :require_user_unlogged_in
   before_action :zaiko_first, only: [:index, :graph, :order, :add]
   
   def index
@@ -15,7 +15,7 @@ class ZaikosController < ApplicationController
       redirect_to zaikos_path
     else
       flash.now[:danger] = '追加に失敗しました。'
-      render zaikos_path
+      render "/zaikos/#{@zaiko.user_id}/add",formats: :html ,handlers: :html ,variants: :html
     end
   end
   
@@ -41,6 +41,9 @@ class ZaikosController < ApplicationController
       else
         graph = @zaiko.trends.build(article:@number, decrease:num,user_id:current_user.id)
         graph.save
+        if @number == 0
+          NotificationMailer.info_message(@zaiko).deliver
+        end
       end
     else
       flash[:danger] = '更新できませんでした。在庫がマイナスとなります。'
@@ -54,7 +57,7 @@ class ZaikosController < ApplicationController
   end
   
   def order
-
+    @zaikos = current_user.zaikos
   end
   
   def add

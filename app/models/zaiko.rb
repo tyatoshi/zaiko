@@ -1,7 +1,7 @@
 class Zaiko < ApplicationRecord
   
   validates :content, presence: true, length: { maximum: 50 }
-  validates :number, presence: true
+  validates :number, presence: true, numericality: true
   
   belongs_to :user
   has_many :trends, dependent: :destroy

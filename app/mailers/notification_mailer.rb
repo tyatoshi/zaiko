@@ -1,13 +1,17 @@
 class NotificationMailer < ApplicationMailer
+  include SessionsHelper
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.notification_mailer.send_message.subject
-  #
-  def send_message
-    @greeting = "Hi"
+  def send_message(name)
+    @email = name.email
+    @name =  name.name
 
-    mail to: "to@example.org"
+    mail to: @email, subject: 'Zaikoへの登録が完了しました'
   end
+  
+  def info_message(zaiko)
+    @content = zaiko.content
+    @email = zaiko.user.email
+    mail to: @email, subject: "在庫が0となりました"
+  end  
+  
 end

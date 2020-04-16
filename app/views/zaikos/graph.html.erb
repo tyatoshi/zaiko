@@ -7,8 +7,13 @@
 
 
 <% @zaikos.each do |zaiko| %>
-  <h4 class="text-center mt-1 mb-1"><%= zaiko.content %></h4>
+<% month_dec = - @graph.where(zaiko_id:zaiko.id).where(created_at: p(d).in_time_zone.all_month).sum(:decrease) %>
+
+  <% if zaiko.id || nil%>
+    <div class="text-center mt-3 mb-3"><%= zaiko.content %>(月使用量：<%= month_dec %>個)</div>
+  
   <canvas id="<%= zaiko.content%>"></canvas>
+  <div class="mt-2 mb-5"><%= image_tag("line.png",class: "gif") %></div>
 
   <script>
         var ctx = document.getElementById("<%= zaiko.content%>");
@@ -18,7 +23,7 @@
                   labels: [<% (0..29).each do |day| %>
                             <% month = p(d - 29 + day).month %>
                             <% day = p(d - 29 + day).day %>
-                            <%= month.to_s + "." + day.to_s %>,
+                            "<%= month.to_s + "/" + day.to_s %>",
                             <% end %>
                           ],
                 datasets: [{
@@ -98,6 +103,7 @@
             
         });
     </script>
+<% end %>
 <% end %>
 
 

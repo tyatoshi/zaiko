@@ -63,3 +63,5 @@ gem 'jquery-rails'
 gem 'mini_magick'
 
 gem 'jquery-turbolinks'
+
+gem 'rakuten_web_service'

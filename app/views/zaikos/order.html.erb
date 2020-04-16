@@ -1,17 +1,30 @@
 <%= render 'zaikos/nav-item' %>
 
-<div class="login" id="login-show">ログイン</div>
-  <div class="login-modal-wrapper" id="login-modal">
-    <!-- ログインのモーダル部分のHTMLを貼り付けてください -->
-    <div class="modal">
-      <div id="login-form">
-        <h2>Emailログイン</h2>
-        <form action="#">
-          <input class="form-control" type="text" placeholder="メールアドレス">
-          <input class="form-control" type="password" placeholder="パスワード">
-          <div id="submit-btn">ログイン</div>
-        </form>
-      </div>
-    </div>
-    
-  </div>
+<% @zaikos.each do |zaiko| %>
+  <% if zaiko.id || nil %>
+  <h5 class="text-center mt-3 mb-3"><%= zaiko.content %></h5>
+    <% @items = RakutenWebService::Ichiba::Item.search(keyword: zaiko.content) %>
+    <%#　@items = RakutenWebService::Ichiba::Item.search(keyword: zaiko.content, sort: "+updateTimestamp" )　←ソートする場合はこれ使う。価格でソートするとあまり良くない・・・%>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center align-middle" style="width:15%">画像</th>
+          <th class="text-center align-middle" style="width:15%">商品名</th>
+          <th class="text-center align-middle" style="width:15%">価格</th>
+        </tr>
+      </thead>
+    <tbody>
+      <% if @items.present? %>
+        <% @items.first(5).each do |item| %>
+          <tr>
+            <td class="text-center align-middle" style="width:15%"><img src="<%= item['mediumImageUrls'][0] %>"></td>
+            <td class="text-center align-middle" style="width:15%"><%= link_to item.name, "#{item.url}" ,target: :_blan%></td>
+            <td class="text-center align-middle" style="width:15%"><%= number_with_delimiter(item.price) %>円</td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="mt-2 mb-5"><%= image_tag("line.png",class: "gif") %></div>
+<% end %>
+<% end %>
