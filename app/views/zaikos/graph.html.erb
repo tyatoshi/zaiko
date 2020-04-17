@@ -106,6 +106,21 @@
 <% end %>
 <% end %>
 
+<div class="form-group row justify-content-center mt-5">
+  <% title = "推移に関して" %>
+  <% data = "本日より前30日間の商品別の推移がグラフとなっています。<br>タイトル横の月使用量は前30日間の払出数量の合計です。" %>
+  <button type="button" id="hoge" class="btn btn-lg btn-info " data-toggle="popover" data-placement="bottom" data-container="body" data-html="true" title=<%= title %> data-content=<%= data %>>
+    HELP
+  </button>
+</div>
+
+<script>
+  $(function() {
+    $('#hoge').popover({
+      trigger: 'hover', // click,hover,focus,manualを選択出来る
+    });
+  });
+</script>
 
   
   

@@ -76,11 +76,12 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
   :user_name => "tyatioshi123456",
   :password => "soao1224832",
-  :domain => 'herokuapp.com',
+  :domain => 'y',
   :address => 'smtp.sendgrid.net',
   :port => 587,
   :authentication => :plain,
   :enable_starttls_auto => true
   }
+  
   
 end

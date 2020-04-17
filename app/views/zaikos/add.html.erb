@@ -13,3 +13,20 @@
   </div>
     <%= f.submit '新規作成', class: 'btn btn-primary btn-block' %>
 <% end %>
+<div class="form-group row justify-content-center mt-5">
+  <% title = "新規作成に関して" %>
+  <% data = "商品名は50文字以内としてください。<br>個数は数字のみとしてください。<br>（個などは不要です）<br>画像は選択しなくも問題ありません。<br>（デフォルト画像が表示されます）" %>
+  <button type="button" id="hoge" class="btn btn-lg btn-info " data-toggle="popover" data-placement="bottom" data-container="body" data-html="true" title=<%= title %> data-content=<%= data %>>
+    HELP
+  </button>
+</div>
+
+<script>
+  $(function() {
+    $('#hoge').popover({
+      trigger: 'hover', // click,hover,focus,manualを選択出来る
+    });
+  });
+</script>
+
+</header>

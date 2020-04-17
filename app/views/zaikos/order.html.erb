@@ -28,3 +28,19 @@
   <div class="mt-2 mb-5"><%= image_tag("line.png",class: "gif") %></div>
 <% end %>
 <% end %>
+
+<div class="form-group row justify-content-center mt-5">
+  <% title = "注文に関して" %>
+  <% data = "商品名を押していただくと、その商品の楽天ページへ飛び購入することができます。<br>（楽天の会員登録等が必要です）" %>
+  <button type="button" id="hoge" class="btn btn-lg btn-info " data-toggle="popover" data-placement="bottom" data-container="body" data-html="true" title=<%= title %> data-content=<%= data %>>
+    HELP
+  </button>
+</div>
+
+<script>
+  $(function() {
+    $('#hoge').popover({
+      trigger: 'hover', // click,hover,focus,manualを選択出来る
+    });
+  });
+</script>
