@@ -15,7 +15,11 @@ class ZaikosController < ApplicationController
       redirect_to zaikos_path
     else
       flash.now[:danger] = '追加に失敗しました。'
-      render "/zaikos/#{@zaiko.user_id}/add",formats: :html ,handlers: :html ,variants: :html
+      #render "/zaikos/#{@zaiko.user_id}/add",formats: :html ,handlers: :html ,variants: :html
+      #render add_zaiko_path locals: { id: @zaiko.user_id }
+      #render create
+      zaiko_first
+      render :add
     end
   end
   
