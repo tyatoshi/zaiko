@@ -1,6 +1,7 @@
 <%= render 'zaikos/nav-item' %>
 <%#　<%= render 'zaikos/nav-item-add' %>
 <%= form_with(model: @zaiko, local: true) do |f| %>
+<%= render 'layouts/error_messages', model: f.object %>
   <div class="form-group ">
     <%= f.text_area :content, class: 'form-control mt-3', rows: 1, placeholder: '商品名を入力してください' %>
   </div>
@@ -31,4 +32,3 @@
   });
 </script>
 
-</header>
