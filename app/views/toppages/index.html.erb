@@ -6,21 +6,6 @@
   </div>
 </div>
 
-<div class="form-group row justify-content-center mt-5">
-  <% title = "SendGrid" %>
-  <% data = "承認用のアイコンです" %>
-  <button type="button" id="hoge" class="btn btn-lg btn-info " data-toggle="popover" data-placement="bottom" data-container="body" data-html="true" title=<%= title %> data-content=<%= data %>>
-    SendGrid
-  </button>
-</div>
-
-<script>
-  $(function() {
-    $('#hoge').popover({
-      trigger: 'hover', // click,hover,focus,manualを選択出来る
-    });
-  });
-</script>
 
 <div class="mt-2 mb-2"><%= image_tag("line.png",class: "gif") %></div>
 <h5 class="text-center">「あれ何個あったっけ」をなくす</h5>
