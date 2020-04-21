@@ -56,8 +56,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'kaminari'
 
-gem 'carrierwave'
-
 gem 'jquery-rails'
 
 gem 'mini_magick'
@@ -71,3 +69,7 @@ group :production do
 end
 
 gem 'rails-i18n'
+
+gem 'carrierwave'
+gem 'fog-aws'
+gem 'rmagick'
