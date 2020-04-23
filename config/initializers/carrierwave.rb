@@ -1,13 +1,13 @@
 unless Rails.env.development? || Rails.env.test?
   CarrierWave.configure do |config|
     config.fog_credentials = {
-      provider: 'AWS',
-      aws_access_key_id: 'AKIA5ZTIG7KMOYBGVOXY',
-      aws_secret_access_key: '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',
-      region: 'ap-northeast-1'
+    :provider              => 'AWS',
+    :region                => ENV['S3_REGION'], 
+    :aws_access_key_id     => ENV['S3_ACCESS_KEY'],
+    :aws_secret_access_key => ENV['S3_SECRET_KEY']
     }
 
-    config.fog_directory  = 'zaiko-app'
+    config.fog_directory     =  ENV['S3_BUCKET']
     config.cache_storage = :fog
   end
 end
