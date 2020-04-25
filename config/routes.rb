@@ -11,11 +11,14 @@ Rails.application.routes.draw do
   
   resources :users, only: [:index, :show, :new, :create]
   
-  resources :zaikos, only: [:index, :create, :update, :destroy] do
+  resources :zaikos, only: [:index, :create, :edit,  :update, :destroy] do
     member do
       get :graph
       get :order
       get :add
     end
   end
+  
+  put "add_dec", to: "zaikos#add_dec"
+  
 end

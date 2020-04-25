@@ -23,6 +23,17 @@ class ZaikosController < ApplicationController
     end
   end
   
+  def update
+    @zaiko = Zaiko.find(params[:id])
+    if @zaiko.update(zaiko_params)
+      flash[:success] = 'Message は正常に更新されました'
+      redirect_to "/"
+    else
+      flash.now[:danger] = 'Message は更新されませんでした'
+      render :edit
+    end
+  end
+  
   def destroy
     @zaiko = Zaiko.find(params[:id])
     @zaiko.destroy
@@ -30,7 +41,7 @@ class ZaikosController < ApplicationController
     redirect_back(fallback_location:zaiko_path )
   end
   
-  def update
+  def add_dec
     @zaiko = Zaiko.find(params[:id])
     
     num = params[:num].to_i
@@ -67,6 +78,11 @@ class ZaikosController < ApplicationController
   def add
 
   end
+  
+  def edit
+    @zaiko = Zaiko.find(params[:id])
+  end
+  
   
   private
   

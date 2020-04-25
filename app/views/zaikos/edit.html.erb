@@ -1,0 +1,35 @@
+<h4 class="text-center mb-5">編集</h4>
+<%= form_with(model: @zaiko, local: true) do |f| %>
+<%= render 'layouts/error_messages', model: f.object %>
+  <div class="form-group ">
+    <%= f.text_area :content, class: 'form-control mt-3', rows: 1, placeholder: '商品名を入力してください' %>
+  </div>
+  <div class="form-group">
+    <%= f.text_area :number, class: 'form-control mt-3', rows: 1, placeholder: '現在の個数を入力してください' %>
+  </div>
+  <div class="form-group">
+    <div "text-center">画像を設定したい場合に設定してください。（設定しなくとも問題ありません）</div>
+    <div "text-center"><%= f.file_field :image_name%></div>
+  </div>
+    <%= f.submit '編集', class: 'btn btn-primary btn-block' %>
+    <a href="/" class="btn btn-default btn-block border">戻る</a>
+<% end %>
+
+
+
+<div class="form-group row justify-content-center mt-5">
+  <% title = "編集に関して" %>
+  <% data = "商品名は50文字以内としてください。<br>個数は数字のみとしてください。<br>（個などは不要です）<br>画像は選択しなくも問題ありません。<br>（デフォルト画像が表示されます）" %>
+  <button type="button" id="hoge" class="btn btn-lg btn-info " data-toggle="popover" data-placement="bottom" data-container="body" data-html="true" title=<%= title %> data-content=<%= data %>>
+    HELP
+  </button>
+</div>
+
+<script>
+  $(function() {
+    $('#hoge').popover({
+      trigger: 'hover', // click,hover,focus,manualを選択出来る
+    });
+  });
+</script>
+
