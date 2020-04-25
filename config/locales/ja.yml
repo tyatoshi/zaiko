@@ -2,9 +2,13 @@ ja:
   activerecord:
     models:
       user: "ユーザー"
+      zaiko: "在庫"
     attributes:
       user:
         name: "ユーザー名"
         email: "メールアドレス"
         password: "パスワード"
+      zaiko:
+        content: "商品名"
+        number: "個数"
         

@@ -26,10 +26,10 @@ class ZaikosController < ApplicationController
   def update
     @zaiko = Zaiko.find(params[:id])
     if @zaiko.update(zaiko_params)
-      flash[:success] = 'Message は正常に更新されました'
+      flash[:success] = 'Zaikoは正常に更新されました'
       redirect_to "/"
     else
-      flash.now[:danger] = 'Message は更新されませんでした'
+      flash.now[:danger] = 'Zaikoは更新されませんでした'
       render :edit
     end
   end
