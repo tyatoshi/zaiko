@@ -3,10 +3,12 @@
 <%= form_with(model: @zaiko, local: true) do |f| %>
 <%= render 'layouts/error_messages', model: f.object %>
   <div class="form-group ">
-    <%= f.text_area :content, class: 'form-control mt-3', rows: 1, placeholder: '商品名を入力してください' %>
+    <%= f.label :content, '商品名を入力してください' %>
+    <%= f.text_area :content, class: 'form-control', rows: 1 %>
   </div>
   <div class="form-group">
-    <%= f.text_area :number, class: 'form-control mt-3', rows: 1, placeholder: '現在の個数を入力してください' %>
+    <%= f.label :number, '現在の個数を入力してください' %>
+    <%= f.text_area :number, class: 'form-control', rows: 1 %>
   </div>
   <div class="form-group">
     <div "text-center">画像を設定したい場合に設定してください。（設定しなくとも問題ありません）</div>

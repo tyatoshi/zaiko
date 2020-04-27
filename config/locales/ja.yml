@@ -8,6 +8,7 @@ ja:
         name: "ユーザー名"
         email: "メールアドレス"
         password: "パスワード"
+        password_confirmation: "パスワードの確認"
       zaiko:
         content: "商品名"
         number: "個数"
